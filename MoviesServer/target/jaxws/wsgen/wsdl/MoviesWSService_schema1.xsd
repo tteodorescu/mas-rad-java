@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://ch.heigvd.movies.ws/" xmlns:tns="http://ch.heigvd.movies.ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="getActors" type="tns:getActors"/>
+
+  <xs:element name="getActorsResponse" type="tns:getActorsResponse"/>
+
+  <xs:element name="getAllActors" type="tns:getAllActors"/>
+
+  <xs:element name="getAllActorsResponse" type="tns:getAllActorsResponse"/>
+
+  <xs:element name="getAllMovies" type="tns:getAllMovies"/>
+
+  <xs:element name="getAllMoviesResponse" type="tns:getAllMoviesResponse"/>
+
+  <xs:element name="getMovies" type="tns:getMovies"/>
+
+  <xs:element name="getMoviesResponse" type="tns:getMoviesResponse"/>
+
+  <xs:complexType name="getActors">
+    <xs:sequence>
+      <xs:element name="partialName" type="xs:string" minOccurs="0"/>
+      <xs:element name="isSample" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getActorsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:actor" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="actor">
+    <xs:sequence>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAllMovies">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getAllMoviesResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:movie" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="movie">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string" minOccurs="0"/>
+      <xs:element name="year" type="xs:int"/>
+      <xs:element name="actors" type="tns:actor" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getMovies">
+    <xs:sequence>
+      <xs:element name="partialTitle" type="xs:string" minOccurs="0"/>
+      <xs:element name="isSample" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getMoviesResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:movie" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAllActors">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getAllActorsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:actor" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

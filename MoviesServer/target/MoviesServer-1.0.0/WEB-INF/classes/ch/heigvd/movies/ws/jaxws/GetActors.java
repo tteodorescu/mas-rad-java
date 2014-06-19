@@ -1,0 +1,59 @@
+
+package ch.heigvd.movies.ws.jaxws;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "getActors", namespace = "http://ch.heigvd.movies.ws/")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "getActors", namespace = "http://ch.heigvd.movies.ws/", propOrder = {
+    "partialName",
+    "isSample"
+})
+public class GetActors {
+
+    @XmlElement(name = "partialName", namespace = "")
+    private String partialName;
+    @XmlElement(name = "isSample", namespace = "")
+    private boolean isSample;
+
+    /**
+     * 
+     * @return
+     *     returns String
+     */
+    public String getPartialName() {
+        return this.partialName;
+    }
+
+    /**
+     * 
+     * @param partialName
+     *     the value for the partialName property
+     */
+    public void setPartialName(String partialName) {
+        this.partialName = partialName;
+    }
+
+    /**
+     * 
+     * @return
+     *     returns boolean
+     */
+    public boolean isIsSample() {
+        return this.isSample;
+    }
+
+    /**
+     * 
+     * @param isSample
+     *     the value for the isSample property
+     */
+    public void setIsSample(boolean isSample) {
+        this.isSample = isSample;
+    }
+
+}

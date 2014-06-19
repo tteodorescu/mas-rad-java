@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="/home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/target/Movies-1.0.0.jar" sourcepath="/Movies/target/Movies-1.0.0-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/traian/Workspaces/eclipse-kepler/MoviesProject/MoviesClientWS/target/MoviesClientWS-1.0.0.jar" sourcepath="/MoviesClientWS/target/MoviesClientWS-1.0.0-sources.jar"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

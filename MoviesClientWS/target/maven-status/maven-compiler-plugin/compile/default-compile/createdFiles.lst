@@ -1,0 +1,14 @@
+ch/heigvd/client/movies/ws/stub/GetMoviesResponse.class
+ch/heigvd/client/movies/ws/stub/Movie.class
+ch/heigvd/client/movies/ws/stub/ObjectFactory.class
+ch/heigvd/client/movies/ws/stub/MoviesWSService.class
+ch/heigvd/client/movies/ws/stub/MoviesWS.class
+ch/heigvd/client/movies/ws/stub/GetAllMovies.class
+ch/heigvd/client/movies/ws/stub/package-info.class
+ch/heigvd/client/movies/ws/stub/GetActors.class
+ch/heigvd/client/movies/ws/stub/GetAllActors.class
+ch/heigvd/client/movies/ws/stub/GetActorsResponse.class
+ch/heigvd/client/movies/ws/stub/GetAllMoviesResponse.class
+ch/heigvd/client/movies/ws/stub/GetMovies.class
+ch/heigvd/client/movies/ws/stub/GetAllActorsResponse.class
+ch/heigvd/client/movies/ws/stub/Actor.class

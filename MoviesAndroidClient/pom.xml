@@ -1,0 +1,99 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>MoviesClients</groupId>
+  <artifactId>MoviesClients</artifactId>
+  <version>1.0.0</version>
+  <name>Maven MoviesClient</name>
+  <packaging>apk</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>  
+
+  <repositories>          
+  <repository>          
+    <id>googlecode-ksoap2-android</id>          
+    <name>googlecode-ksoap2-android</name>              
+    <url>http://ksoap2-android.googlecode.com/svn/m2-repo</url>         
+  </repository>         
+</repositories>
+
+	<dependencies>
+	
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+					
+		<dependency>
+   			<groupId>com.google.android</groupId>
+   			<artifactId>android</artifactId>
+   			<version>3.9.0_rc.2</version>
+   			<scope>provided</scope>
+  		</dependency>	
+
+		<dependency>
+       		<groupId>com.google.code.ksoap2-android</groupId>
+        	<artifactId>ksoap2-android</artifactId>
+        	<version>3.3.0</version>
+        </dependency>
+        		
+	     <dependency>
+	       <groupId>com.google.android</groupId>
+	       <artifactId>android</artifactId>
+	       <version>4.1.1.4</version>
+	     </dependency>		
+	     
+	    <dependency>
+			<groupId>Movies</groupId>
+			<artifactId>Movies</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>MoviesClientWS</groupId>
+		    <artifactId>MoviesClientWS</artifactId>
+		    <version>1.0.0</version>
+		</dependency>
+	     	     		
+	</dependencies> 
+  
+  <build>
+  	<finalName>${project.artifactId}</finalName>     
+  	<sourceDirectory>src</sourceDirectory>
+  	
+	  <pluginManagement>
+	   <plugins>
+	    <plugin>
+	     <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+	     <artifactId>android-maven-plugin</artifactId>
+	     <version>3.8.2</version>
+          <goals>
+              <goal>consume-aar</goal>
+          </goals>	     
+	     <extensions>true</extensions>
+	    </plugin>
+	   </plugins>
+	  </pluginManagement>
+  		  	
+	  <plugins>  
+        
+       <plugin>
+          <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+          <artifactId>android-maven-plugin</artifactId>
+ 		 <configuration>
+             <sdk>
+                 <platform>19</platform>
+             </sdk>
+             <deleteConflictingFiles>true</deleteConflictingFiles>
+             <undeployBeforeDeploy>true</undeployBeforeDeploy>
+         </configuration>
+        </plugin>
+        
+    </plugins>
+  </build>
+  
+</project>
