@@ -5,13 +5,13 @@ import ch.heigvd.movies.interfaces.*;
 public class Movie implements IMovieData 
 {
 	public String title;
-	public int year;
+	public int year, id;
 	public ActorList actors = new ActorList();
 
 	public Movie()
 	{}
 	
-	public Movie(String title, int year, ActorList actors)
+	public Movie(int id, String title, int year, ActorList actors)
 	{	
 		this.title = title;
 		this.year = year;
@@ -31,7 +31,9 @@ public class Movie implements IMovieData
 	
 	@Override
 	public String toString() 
-	{
-		return String.format("", title, year);
-	}
+	{ return String.format("", title, year); }
+
+	@Override
+	public int getID() 
+	{ return id; }
 }

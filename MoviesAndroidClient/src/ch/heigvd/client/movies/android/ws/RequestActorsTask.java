@@ -1,37 +1,32 @@
 package ch.heigvd.client.movies.android.ws;
 
-import android.util.Log;
-
 import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
-//import org.ksoap2.serialization.PropertyInfo;
 
-
+import ch.heigvd.client.movies.android.common.ActorAsyncTaskInfo;
 import ch.heigvd.client.movies.android.common.ActorsLoadCallback;
 import ch.heigvd.movies.data.ActorList;
 import android.os.AsyncTask;
 
-public class RequestActorsTask extends AsyncTask<ActorsLoadCallback, Integer, ActorList>
+public class RequestActorsTask extends AsyncTask<ActorAsyncTaskInfo, Integer, ActorList>
 { 
-    private static final String METHOD_NAME = "getAllActors";
  	
     private static ActorsLoadCallback callback;
     
 	@Override
-	protected ActorList doInBackground(ActorsLoadCallback... params) 
+	protected ActorList doInBackground(ActorAsyncTaskInfo... taskInfo) 
 	{
-		callback = params[0];
+		if (taskInfo == null)
+			throw new NullPointerException("No async task information"); 
+			
+		callback = taskInfo[0].callback;		
+		boolean all = taskInfo[0].like == "*";
 		
-		SoapObject request = new SoapObject(MovieService.NAMESPACE, METHOD_NAME);
-		
-		/*PropertyInfo propInfo=new PropertyInfo();
-		propInfo.name="arg0";
-		propInfo.type=PropertyInfo.STRING_CLASS;
-		  
-		request.addProperty(propInfo, "John Smith");*/		
-	
+		MovieListSoapRequestObject request = 
+				new MovieListSoapRequestObject(
+						taskInfo[0].isSample, taskInfo[0].like);
+			
 		android.os.Debug.waitForDebugger();		
 		
 		SoapSerializationEnvelope envelope = 
@@ -39,8 +34,9 @@ public class RequestActorsTask extends AsyncTask<ActorsLoadCallback, Integer, Ac
 		
 		envelope.setOutputSoapObject(request);
 		
-		envelope.addMapping(MovieService.NAMESPACE, "getAllActorsResponse", 
-				new ActorListSoapResponseObject().getClass());
+		envelope.addMapping(MovieService.NAMESPACE, 
+				all ? "getAllActorsResponse" : "getActorsResponse", 
+						new ActorListSoapResponseObject().getClass());
 		
 		envelope.addMapping(MovieService.NAMESPACE, "actor", 
 				new ActorSoapResponseObject().getClass());
@@ -55,9 +51,9 @@ public class RequestActorsTask extends AsyncTask<ActorsLoadCallback, Integer, Ac
 		   androidHttpTransport.debug = true;
 		   
 		   androidHttpTransport.call(MovieService.SOAP_ACTION, envelope);
-		   String response = androidHttpTransport.responseDump;
-		   Log.d("the answer is: ", response);
-		   
+
+//		   String response = androidHttpTransport.responseDump;
+		  
 		   actors = (ActorList)envelope.getResponse();
 
   		}

@@ -27,8 +27,10 @@ public interface MoviesWSInterface
 			@WebParam(name="isSample") boolean isSample);
 			
 	@WebMethod(operationName = "getAllActors")	
-	public ArrayList<Actor> getAllActors();
+	public ArrayList<Actor> getAllActors(
+			@WebParam(name="isSample") boolean isSample);
 		
 	@WebMethod(operationName = "getAllMovies")
-	public ArrayList<Movie> getAllMovies();	
+	public ArrayList<Movie> getAllMovies(
+			@WebParam(name="isSample") boolean isSample);	
 }

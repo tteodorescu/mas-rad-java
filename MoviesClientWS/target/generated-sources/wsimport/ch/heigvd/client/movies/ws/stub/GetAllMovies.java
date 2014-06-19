@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="isSample" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -25,8 +26,27 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getAllMovies")
+@XmlType(name = "getAllMovies", propOrder = {
+    "isSample"
+})
 public class GetAllMovies {
 
+    protected boolean isSample;
+
+    /**
+     * Gets the value of the isSample property.
+     * 
+     */
+    public boolean isIsSample() {
+        return isSample;
+    }
+
+    /**
+     * Sets the value of the isSample property.
+     * 
+     */
+    public void setIsSample(boolean value) {
+        this.isSample = value;
+    }
 
 }

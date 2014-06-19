@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
-
 import ch.heigvd.movies.data.MovieList;
 import ch.heigvd.movies.interfaces.*;
-
 import ch.heigvd.client.movies.android.common.IWSMovieRepository;
+import ch.heigvd.client.movies.android.common.MovieAsyncTaskInfo;
 import ch.heigvd.client.movies.android.common.MoviesLoadCallback;
-import ch.heigvd.client.movies.android.ws.WSRepositoryFactory;
 
 /**
  * A list fragment representing a list of Movies. This fragment
@@ -22,8 +20,8 @@ import ch.heigvd.client.movies.android.ws.WSRepositoryFactory;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class MovieListFragment extends ListFragment {
-
+public class MovieListFragment extends ListFragment 
+{		
     /**
      * The serialization (saved instance state) Bundle key representing the
      * activated item position. Only used on tablets.
@@ -73,16 +71,7 @@ public class MovieListFragment extends ListFragment {
 	                android.R.id.text1, movies));						
 		}			
 	};
-    
-//    private ActorsLoadCallback sActorsLoadCallback = new ActorsLoadCallback() 
-//    {
-//		@Override
-//		public void onActorsListLoaded(ActorList actors) {
-//			// TODO Auto-generated method stub
-//			
-//		}		
-//	};	
-	
+    	
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -95,9 +84,11 @@ public class MovieListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         		
         //IMovieRepository repo = (IMovieRepository) RepositoryFactory.getRepository();
-        IWSMovieRepository repo = (IWSMovieRepository) WSRepositoryFactory.getRepository();        
-               
-        repo.getMoviesAsync("", sMoviesLoadCallback);       
+        IWSMovieRepository repo = (IWSMovieRepository) RepositoryFactory.
+        		getRepository(ServerMovieRepositories.WS_REPOSITORY);        
+
+        MovieAsyncTaskInfo taskInfo = new MovieAsyncTaskInfo(sMoviesLoadCallback, true, "*");
+        repo.getMoviesAsync(taskInfo);
     }
 
     @Override
@@ -137,7 +128,7 @@ public class MovieListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(RepositoryFactory.getRepository().
+        mCallbacks.onItemSelected(RepositoryFactory.getRepository(ServerMovieRepositories.WS_REPOSITORY).
         		getMovies().get(position).toString());
     }
 

@@ -7,7 +7,6 @@ import org.ksoap2.serialization.KvmSerializable;
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 
-import ch.heigvd.movies.data.ActorList;
 import ch.heigvd.movies.data.Movie;
 
 public class MovieSoapResponseObject extends Movie implements KvmSerializable

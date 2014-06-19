@@ -6,9 +6,6 @@
     	id="WebApp_ID" 
     	version="3.0">
   <display-name>Traian's servlets</display-name>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
   
   <!-- Web service declaratives -->
   <listener>
@@ -18,13 +15,13 @@
   </listener>
   
   <servlet>
-      <servlet-name>movies</servlet-name>
-      <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+      <servlet-name>MoviesWSService</servlet-name>
+      		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
       <load-on-startup>1</load-on-startup>
   </servlet>
   
   <servlet-mapping>
-      <servlet-name>movies</servlet-name>
+      <servlet-name>MoviesWSService</servlet-name>
       <url-pattern>/MoviesWSService</url-pattern>
   </servlet-mapping>
   

@@ -60,6 +60,7 @@ public interface MoviesWS {
 
     /**
      * 
+     * @param isSample
      * @return
      *     returns java.util.List<ch.heigvd.client.movies.ws.stub.Movie>
      */
@@ -67,10 +68,13 @@ public interface MoviesWS {
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "getAllMovies", targetNamespace = "http://ch.heigvd.movies.ws/", className = "ch.heigvd.client.movies.ws.stub.GetAllMovies")
     @ResponseWrapper(localName = "getAllMoviesResponse", targetNamespace = "http://ch.heigvd.movies.ws/", className = "ch.heigvd.client.movies.ws.stub.GetAllMoviesResponse")
-    public List<Movie> getAllMovies();
+    public List<Movie> getAllMovies(
+        @WebParam(name = "isSample", targetNamespace = "")
+        boolean isSample);
 
     /**
      * 
+     * @param isSample
      * @return
      *     returns java.util.List<ch.heigvd.client.movies.ws.stub.Actor>
      */
@@ -78,6 +82,8 @@ public interface MoviesWS {
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "getAllActors", targetNamespace = "http://ch.heigvd.movies.ws/", className = "ch.heigvd.client.movies.ws.stub.GetAllActors")
     @ResponseWrapper(localName = "getAllActorsResponse", targetNamespace = "http://ch.heigvd.movies.ws/", className = "ch.heigvd.client.movies.ws.stub.GetAllActorsResponse")
-    public List<Actor> getAllActors();
+    public List<Actor> getAllActors(
+        @WebParam(name = "isSample", targetNamespace = "")
+        boolean isSample);
 
 }

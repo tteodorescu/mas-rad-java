@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="year" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="actors" type="{http://ch.heigvd.movies.ws/}actor" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -34,12 +35,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "movie", propOrder = {
     "title",
     "year",
+    "id",
     "actors"
 })
 public class Movie {
 
     protected String title;
     protected int year;
+    protected int id;
     @XmlElement(nillable = true)
     protected List<Actor> actors;
 
@@ -81,6 +84,22 @@ public class Movie {
      */
     public void setYear(int value) {
         this.year = value;
+    }
+
+    /**
+     * Gets the value of the id property.
+     * 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     */
+    public void setId(int value) {
+        this.id = value;
     }
 
     /**
