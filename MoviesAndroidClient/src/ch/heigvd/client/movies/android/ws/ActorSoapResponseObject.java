@@ -10,10 +10,13 @@ import ch.heigvd.movies.data.Actor;
 
 public class ActorSoapResponseObject extends Actor implements KvmSerializable
 {	
+	private static final long serialVersionUID = -4928916143884058762L;
+
 	private static final class Properties
 	{
+		public static final String id = "id";		
 		public static final String firstName = "firstName";
-		public static final String lastName = "lastName";		
+		public static final String lastName = "lastName";				
 	}
 		
 	public ActorSoapResponseObject(){}
@@ -22,6 +25,9 @@ public class ActorSoapResponseObject extends Actor implements KvmSerializable
 	{
 		try
 		{
+	        if (soapObject.hasProperty(Properties.id))
+	            firstName = soapObject.getProperty(Properties.id).toString();
+	        
 	        if (soapObject.hasProperty(Properties.firstName))
 	            firstName = soapObject.getProperty(Properties.firstName).toString();
 	
@@ -37,8 +43,9 @@ public class ActorSoapResponseObject extends Actor implements KvmSerializable
 	{
 		switch(index)
 		{
-			case 0: return firstName;	
-			case 1: return lastName;
+			case 0: return id;		
+			case 1: return firstName;	
+			case 2: return lastName;
 		}
 		
 		return null;
@@ -46,7 +53,7 @@ public class ActorSoapResponseObject extends Actor implements KvmSerializable
 
 	@Override
 	public int getPropertyCount() 
-	{return 2;	}
+	{return 3;	}
 
 	@Override
 	public void getPropertyInfo(int index, 
@@ -54,11 +61,15 @@ public class ActorSoapResponseObject extends Actor implements KvmSerializable
 	{
 		switch(index)
 		{
-	        case 0:
+        	case 0:
+        		info.type = PropertyInfo.INTEGER_CLASS;
+        		info.name = Properties.firstName;
+        		break;		
+	        case 1:
 	            info.type = PropertyInfo.STRING_CLASS;
 	            info.name = Properties.firstName;
 	            break;
-	        case 1:
+	        case 2:
 	            info.type = PropertyInfo.STRING_CLASS;
 	            info.name = Properties.lastName;
 	            break;
@@ -70,8 +81,9 @@ public class ActorSoapResponseObject extends Actor implements KvmSerializable
 	{
 		switch(index)
 		{
-			case 0: firstName=(String)object; break;		
-			case 1: lastName = (String)object; break;		
+			case 0: id=(Integer)object; break;		
+			case 1: firstName=(String)object; break;		
+			case 2: lastName = (String)object; break;		
 		}				
 	}	
 }

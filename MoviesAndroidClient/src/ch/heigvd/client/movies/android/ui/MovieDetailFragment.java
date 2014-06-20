@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import ch.heigvd.client.movies.android.R;
-import ch.heigvd.client.movies.android.ui.dummy.DummyContent;
+import ch.heigvd.movies.data.Movie;
 
 /**
  * A fragment representing a single Movie detail screen.
@@ -20,12 +20,12 @@ public class MovieDetailFragment extends Fragment {
      * The fragment argument representing the item ID that this fragment
      * represents.
      */
-    public static final String ARG_ITEM_ID = "item_id";
+    public static final String ARG_ITEM_ID = "movie";
 
     /**
      * The dummy content this fragment is presenting.
      */
-    private DummyContent.DummyItem mItem;
+    private Movie mMovie;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -38,11 +38,12 @@ public class MovieDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
+    	Bundle bundle = getArguments();        
+        if (bundle.containsKey(ARG_ITEM_ID)) {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mMovie = (Movie)bundle.getSerializable(ARG_ITEM_ID);
         }
     }
 
@@ -51,9 +52,9 @@ public class MovieDetailFragment extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.movie_detail)).setText(mItem.content);
+        if (mMovie != null) 
+        {
+            ((TextView) rootView.findViewById(R.id.movie_detail)).setText(mMovie.toString());
         }
 
         return rootView;

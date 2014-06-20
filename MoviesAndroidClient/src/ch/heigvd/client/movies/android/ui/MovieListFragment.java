@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
+import ch.heigvd.movies.data.Movie;
 import ch.heigvd.movies.data.MovieList;
 import ch.heigvd.movies.interfaces.*;
 import ch.heigvd.client.movies.android.common.IWSMovieRepository;
@@ -48,7 +49,7 @@ public class MovieListFragment extends ListFragment
         /**
          * Callback for when an item has been selected.
          */
-        public void onItemSelected(String id); 
+        public void onItemSelected(Movie movie); 
     }
 
     /**
@@ -57,14 +58,20 @@ public class MovieListFragment extends ListFragment
      */
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
-        public void onItemSelected(String id) {
-        }
+        public void onItemSelected(Movie movie) {}
     };
 
+    /**
+     * Mandatory empty constructor for the fragment manager to instantiate the
+     * fragment (e.g. upon screen orientation changes).
+     */
+    public MovieListFragment() {}
+        
     private MoviesLoadCallback sMoviesLoadCallback = new MoviesLoadCallback() {
 		
 		@Override
-		public void onMoviesListLoaded(MovieList movies) {
+		public void onMoviesListLoaded(MovieList movies) 
+		{			
 	        setListAdapter(new MoviesArrayAdapter(
 	                getActivity(),
 	                android.R.layout.simple_list_item_activated_1,
@@ -72,22 +79,24 @@ public class MovieListFragment extends ListFragment
 		}			
 	};
     	
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public MovieListFragment() {
-    }
-
+    private MoviesLoadCallback sMovieLoadCallback = new MoviesLoadCallback() 
+    {
+		@Override
+		public void onMoviesListLoaded(MovieList movies)
+		{ mCallbacks.onItemSelected(movies.get(0)); }
+	};
+			
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         		
-        //IMovieRepository repo = (IMovieRepository) RepositoryFactory.getRepository();
         IWSMovieRepository repo = (IWSMovieRepository) RepositoryFactory.
         		getRepository(ServerMovieRepositories.WS_REPOSITORY);        
 
-        MovieAsyncTaskInfo taskInfo = new MovieAsyncTaskInfo(sMoviesLoadCallback, true, "*");
+        MovieAsyncTaskInfo taskInfo = 
+        		new MovieAsyncTaskInfo(
+        				sMoviesLoadCallback, true, "*");
+        
         repo.getMoviesAsync(taskInfo);
     }
 
@@ -128,8 +137,14 @@ public class MovieListFragment extends ListFragment
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(RepositoryFactory.getRepository(ServerMovieRepositories.WS_REPOSITORY).
-        		getMovies().get(position).toString());
+        
+        IWSMovieRepository repo = (IWSMovieRepository) RepositoryFactory.
+        		getRepository(ServerMovieRepositories.WS_REPOSITORY);
+        
+        MovieAsyncTaskInfo taskInfo = 
+        		new MovieAsyncTaskInfo(sMovieLoadCallback, true, id);
+        
+        repo.getMoviesAsync(taskInfo);
     }
 
     @Override

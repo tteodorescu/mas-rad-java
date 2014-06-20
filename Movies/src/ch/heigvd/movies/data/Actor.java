@@ -1,9 +1,12 @@
 package ch.heigvd.movies.data;
 
+import java.io.Serializable;
+
 import ch.heigvd.movies.interfaces.IActorsData;
 
-public class Actor implements IActorsData 
+public class Actor implements IActorsData, Serializable
 {	
+	private static final long serialVersionUID = -4578310003023832403L;
 	public String firstName, lastName;
 	public int id;
 	

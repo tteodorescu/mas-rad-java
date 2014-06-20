@@ -1,6 +1,7 @@
 package ch.heigvd.client.movies.android.ui;
 
 import ch.heigvd.client.movies.android.R;
+import ch.heigvd.movies.data.Movie;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -58,15 +59,15 @@ public class MovieListActivity extends FragmentActivity
      * indicating that the item with the given ID was selected.
      */
     @Override
-    public void onItemSelected(String id) {
+    public void onItemSelected(Movie movie) {
         if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
-            Bundle arguments = new Bundle();
-            arguments.putString(MovieDetailFragment.ARG_ITEM_ID, id);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(MovieDetailFragment.ARG_ITEM_ID, movie);
             MovieDetailFragment fragment = new MovieDetailFragment();
-            fragment.setArguments(arguments);
+            fragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.movie_detail_container, fragment)
                     .commit();
@@ -75,7 +76,8 @@ public class MovieListActivity extends FragmentActivity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, MovieDetailActivity.class);
-            detailIntent.putExtra(MovieDetailFragment.ARG_ITEM_ID, id);
+            detailIntent.putExtra(MovieDetailFragment.ARG_ITEM_ID, movie);
+            
             startActivity(detailIntent);
         }
     }

@@ -21,35 +21,23 @@ public class RequestMoviesTask extends AsyncTask<MovieAsyncTaskInfo, Integer, Mo
 			throw new NullPointerException("No async task information"); 
 			
 		callback = taskInfo[0].callback;		
-		boolean all = taskInfo[0].like == "*";
 		
-		MovieListSoapRequestObject request = 
-				new MovieListSoapRequestObject(
-						taskInfo[0].isSample, taskInfo[0].like);
+		MovieListSoapRequestObject request = null;
+		
+		
+		request = taskInfo[0].id == -1 ? 
+				new MovieListSoapRequestObject(taskInfo[0].isSample, taskInfo[0].like):
+				new MovieListSoapRequestObject(taskInfo[0].isSample, taskInfo[0].id);
 		
 		android.os.Debug.waitForDebugger();		
 		
-		SoapSerializationEnvelope envelope = 
-				new SoapSerializationEnvelope(SoapEnvelope.VER11);
-		
-		envelope.setOutputSoapObject(request);
-		
-		envelope.addMapping(MovieService.NAMESPACE, 
-				all ? "getAllMoviesResponse" : "getMoviesResponse", 
-				new MovieListSoapResponseObject().getClass());
-		
-		envelope.addMapping(MovieService.NAMESPACE, "movie", 
-				new MovieSoapResponseObject().getClass());
-		
-		envelope.addMapping(MovieService.NAMESPACE, 
-				all ? "getAllActorsResponse" : "getActorsResponse", 
-				new ActorListSoapResponseObject().getClass());		
-		
-		envelope.addMapping(MovieService.NAMESPACE, "actor", 
-				new ActorSoapResponseObject().getClass());
-		
-		envelope.dotNet = false;
-	
+		SoapSerializationEnvelope envelope =
+				taskInfo[0].id != -1 ?
+						new OneMovieSoapSerializationEnvelope(SoapEnvelope.VER11, request) :
+							taskInfo[0].like != null && taskInfo[0].like == "*" ?									
+						new AllMoviesSoapSerializationEnvelope(SoapEnvelope.VER11, request) :
+					    new MoviesSoapSerializationEnvelope(SoapEnvelope.VER11, request);							;
+			
 		MovieList movies = null;
 		
 	    try 
@@ -58,8 +46,6 @@ public class RequestMoviesTask extends AsyncTask<MovieAsyncTaskInfo, Integer, Mo
 		   androidHttpTransport.debug = true;
 		   
 		   androidHttpTransport.call(MovieService.SOAP_ACTION, envelope);
-
-//		   String response = androidHttpTransport.responseDump;
 	   
 		   movies = (MovieList)envelope.getResponse();
 
@@ -78,7 +64,5 @@ public class RequestMoviesTask extends AsyncTask<MovieAsyncTaskInfo, Integer, Mo
 
     // This is called when doInBackground() is finished
     protected void onPostExecute(MovieList movies) 
-    {	    
-		callback.onMoviesListLoaded(movies);
-    }	
+    { callback.onMoviesListLoaded(movies != null ? movies : new MovieList());}    
 }

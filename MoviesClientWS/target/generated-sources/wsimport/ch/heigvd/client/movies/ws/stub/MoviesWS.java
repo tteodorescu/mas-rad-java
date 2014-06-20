@@ -86,4 +86,21 @@ public interface MoviesWS {
         @WebParam(name = "isSample", targetNamespace = "")
         boolean isSample);
 
+    /**
+     * 
+     * @param id
+     * @param isSample
+     * @return
+     *     returns java.util.List<ch.heigvd.client.movies.ws.stub.Movie>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getMovie", targetNamespace = "http://ch.heigvd.movies.ws/", className = "ch.heigvd.client.movies.ws.stub.GetMovie")
+    @ResponseWrapper(localName = "getMovieResponse", targetNamespace = "http://ch.heigvd.movies.ws/", className = "ch.heigvd.client.movies.ws.stub.GetMovieResponse")
+    public List<Movie> getMovie(
+        @WebParam(name = "id", targetNamespace = "")
+        Integer id,
+        @WebParam(name = "isSample", targetNamespace = "")
+        boolean isSample);
+
 }

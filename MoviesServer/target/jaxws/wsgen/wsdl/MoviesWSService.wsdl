@@ -30,6 +30,12 @@
   <message name="getAllActorsResponse">
     <part name="parameters" element="tns:getAllActorsResponse"/>
   </message>
+  <message name="getMovie">
+    <part name="parameters" element="tns:getMovie"/>
+  </message>
+  <message name="getMovieResponse">
+    <part name="parameters" element="tns:getMovieResponse"/>
+  </message>
   <portType name="MoviesWS">
     <operation name="getMovies">
       <input message="tns:getMovies"/>
@@ -46,6 +52,10 @@
     <operation name="getAllActors">
       <input message="tns:getAllActors"/>
       <output message="tns:getAllActorsResponse"/>
+    </operation>
+    <operation name="getMovie">
+      <input message="tns:getMovie"/>
+      <output message="tns:getMovieResponse"/>
     </operation>
   </portType>
   <binding name="MoviesWSPortBinding" type="tns:MoviesWS">
@@ -78,6 +88,15 @@
       </output>
     </operation>
     <operation name="getAllActors">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getMovie">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

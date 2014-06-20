@@ -13,6 +13,10 @@
 
   <xs:element name="getAllMoviesResponse" type="tns:getAllMoviesResponse"/>
 
+  <xs:element name="getMovie" type="tns:getMovie"/>
+
+  <xs:element name="getMovieResponse" type="tns:getMovieResponse"/>
+
   <xs:element name="getMovies" type="tns:getMovies"/>
 
   <xs:element name="getMoviesResponse" type="tns:getMoviesResponse"/>
@@ -38,13 +42,14 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="getAllMovies">
+  <xs:complexType name="getMovie">
     <xs:sequence>
+      <xs:element name="id" type="xs:int" minOccurs="0"/>
       <xs:element name="isSample" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="getAllMoviesResponse">
+  <xs:complexType name="getMovieResponse">
     <xs:sequence>
       <xs:element name="return" type="tns:movie" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
@@ -56,6 +61,18 @@
       <xs:element name="year" type="xs:int"/>
       <xs:element name="id" type="xs:int"/>
       <xs:element name="actors" type="tns:actor" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAllMovies">
+    <xs:sequence>
+      <xs:element name="isSample" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAllMoviesResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:movie" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 

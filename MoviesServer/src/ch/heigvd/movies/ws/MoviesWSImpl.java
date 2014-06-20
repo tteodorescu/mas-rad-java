@@ -3,6 +3,7 @@ package ch.heigvd.movies.ws;
 import javax.jws.WebService;
 
 import ch.heigvd.movies.data.ActorList;
+import ch.heigvd.movies.data.Movie;
 import ch.heigvd.movies.data.MovieList;
 import ch.heigvd.movies.interfaces.BasicMovieRepositories;
 import ch.heigvd.movies.interfaces.RepositoryFactory;
@@ -49,5 +50,19 @@ public class MoviesWSImpl implements MoviesWSInterface
 								BasicMovieRepositories.SAMPLE_REPOSITORY : 
 								ServerMovieRepositories.WS_REPOSITORY).
 									getActors();
+	}
+
+	@Override
+	public MovieList getMovie(Integer id, boolean isSample) {
+		//as doing another pair of Soap objects at client's level requests time, get a list with an element 
+		MovieList list = new MovieList(); 
+				
+		Movie movie = RepositoryFactory.getRepository( 
+				isSample ? 
+						BasicMovieRepositories.SAMPLE_REPOSITORY : 
+						ServerMovieRepositories.WS_REPOSITORY).
+							getMovie(id);
+		list.add(movie);
+		return list;
 	}
 }

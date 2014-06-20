@@ -38,11 +38,13 @@ public class MovieDetailActivity extends FragmentActivity {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            Bundle arguments = new Bundle();
-            arguments.putString(MovieDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(MovieDetailFragment.ARG_ITEM_ID));
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(MovieDetailFragment.ARG_ITEM_ID,
+                    getIntent().getSerializableExtra(MovieDetailFragment.ARG_ITEM_ID));
+            
             MovieDetailFragment fragment = new MovieDetailFragment();
-            fragment.setArguments(arguments);
+            fragment.setArguments(bundle);
+            
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.movie_detail_container, fragment)
                     .commit();

@@ -28,9 +28,11 @@ public class ObjectFactory {
     private final static QName _GetMoviesResponse_QNAME = new QName("http://ch.heigvd.movies.ws/", "getMoviesResponse");
     private final static QName _GetAllActors_QNAME = new QName("http://ch.heigvd.movies.ws/", "getAllActors");
     private final static QName _GetAllActorsResponse_QNAME = new QName("http://ch.heigvd.movies.ws/", "getAllActorsResponse");
+    private final static QName _GetMovieResponse_QNAME = new QName("http://ch.heigvd.movies.ws/", "getMovieResponse");
     private final static QName _GetActorsResponse_QNAME = new QName("http://ch.heigvd.movies.ws/", "getActorsResponse");
     private final static QName _GetMovies_QNAME = new QName("http://ch.heigvd.movies.ws/", "getMovies");
     private final static QName _GetActors_QNAME = new QName("http://ch.heigvd.movies.ws/", "getActors");
+    private final static QName _GetMovie_QNAME = new QName("http://ch.heigvd.movies.ws/", "getMovie");
     private final static QName _GetAllMovies_QNAME = new QName("http://ch.heigvd.movies.ws/", "getAllMovies");
 
     /**
@@ -65,6 +67,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetMovie }
+     * 
+     */
+    public GetMovie createGetMovie() {
+        return new GetMovie();
+    }
+
+    /**
      * Create an instance of {@link GetActors }
      * 
      */
@@ -86,6 +96,14 @@ public class ObjectFactory {
      */
     public GetAllMoviesResponse createGetAllMoviesResponse() {
         return new GetAllMoviesResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetMovieResponse }
+     * 
+     */
+    public GetMovieResponse createGetMovieResponse() {
+        return new GetMovieResponse();
     }
 
     /**
@@ -157,6 +175,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMovieResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ch.heigvd.movies.ws/", name = "getMovieResponse")
+    public JAXBElement<GetMovieResponse> createGetMovieResponse(GetMovieResponse value) {
+        return new JAXBElement<GetMovieResponse>(_GetMovieResponse_QNAME, GetMovieResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetActorsResponse }{@code >}}
      * 
      */
@@ -181,6 +208,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ch.heigvd.movies.ws/", name = "getActors")
     public JAXBElement<GetActors> createGetActors(GetActors value) {
         return new JAXBElement<GetActors>(_GetActors_QNAME, GetActors.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMovie }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ch.heigvd.movies.ws/", name = "getMovie")
+    public JAXBElement<GetMovie> createGetMovie(GetMovie value) {
+        return new JAXBElement<GetMovie>(_GetMovie_QNAME, GetMovie.class, null, value);
     }
 
     /**

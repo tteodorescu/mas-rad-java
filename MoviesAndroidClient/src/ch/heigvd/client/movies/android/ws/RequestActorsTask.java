@@ -21,28 +21,20 @@ public class RequestActorsTask extends AsyncTask<ActorAsyncTaskInfo, Integer, Ac
 			throw new NullPointerException("No async task information"); 
 			
 		callback = taskInfo[0].callback;		
-		boolean all = taskInfo[0].like == "*";
 		
-		MovieListSoapRequestObject request = 
-				new MovieListSoapRequestObject(
+		ActorListSoapRequestObject request = 
+				new ActorListSoapRequestObject(
 						taskInfo[0].isSample, taskInfo[0].like);
 			
 		android.os.Debug.waitForDebugger();		
 		
 		SoapSerializationEnvelope envelope = 
-				new SoapSerializationEnvelope(SoapEnvelope.VER11);
-		
-		envelope.setOutputSoapObject(request);
-		
-		envelope.addMapping(MovieService.NAMESPACE, 
-				all ? "getAllActorsResponse" : "getActorsResponse", 
-						new ActorListSoapResponseObject().getClass());
-		
-		envelope.addMapping(MovieService.NAMESPACE, "actor", 
-				new ActorSoapResponseObject().getClass());
-		
-		envelope.dotNet = false;
-	
+				taskInfo[0].id != -1 ?
+						new ActorSoapSerializationEnvelope(SoapEnvelope.VER11, request) :
+							taskInfo[0].like != null && taskInfo[0].like == "*" ?							
+									new ActorsSoapSerializationEnvelope(SoapEnvelope.VER11, request) :
+										new AllActorsSoapSerializationEnvelope(SoapEnvelope.VER11, request);
+			
 		ActorList actors = null;
 		
 	    try 

@@ -1,20 +1,17 @@
 package ch.heigvd.client.movies.android.common;
 
-public class MovieAsyncTaskInfo {
+public class MovieAsyncTaskInfo extends AsyncTaskInfo {
 	public MoviesLoadCallback callback;
-	public boolean isSample;
-	public String like;
-	
-	public MovieAsyncTaskInfo()
+		
+	public MovieAsyncTaskInfo(MoviesLoadCallback callback, boolean isSample, long id)
 	{ 
-		isSample = true;
-		like = "*";
+		super(isSample, id);
+		this.callback = callback;		
 	}
 	
 	public MovieAsyncTaskInfo(MoviesLoadCallback callback, boolean isSample, String like)
 	{ 
-		this.isSample = isSample;
-		this.like = like;
-		this.callback = callback;		
+		super(isSample, like);		
+		this.callback = callback;
 	}	
 }
