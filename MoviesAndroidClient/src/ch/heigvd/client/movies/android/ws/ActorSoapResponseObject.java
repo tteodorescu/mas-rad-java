@@ -26,7 +26,7 @@ public class ActorSoapResponseObject extends Actor implements KvmSerializable
 		try
 		{
 	        if (soapObject.hasProperty(Properties.id))
-	            firstName = soapObject.getProperty(Properties.id).toString();
+	            id = Integer.parseInt(soapObject.getProperty(Properties.id).toString());
 	        
 	        if (soapObject.hasProperty(Properties.firstName))
 	            firstName = soapObject.getProperty(Properties.firstName).toString();

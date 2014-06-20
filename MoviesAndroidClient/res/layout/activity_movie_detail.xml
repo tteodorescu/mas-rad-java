@@ -3,5 +3,6 @@
     android:id="@+id/movie_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ch.heigvd.client.movies.android.ui.MovieDetailActivity"
-    tools:ignore="MergeRootFrame" />
+	tools:ignore="MergeRootFrame"     
+    tools:context="ch.heigvd.client.movies.android.ui.MovieDetailActivity">
+</FrameLayout>

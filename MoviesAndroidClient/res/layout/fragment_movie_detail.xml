@@ -1,3 +1,9 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical">
+
+<!-- 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movie_detail"
@@ -6,4 +12,30 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:textIsSelectable="true"
-    tools:context="ch.heigvd.client.movies.android.ui.MovieDetailFragment" />
+    tools:context="ch.heigvd.client.movies.android.ui.MovieDetailFragment"> 
+</TextView>
+      -->
+
+
+	    
+	 	 <TextView
+	          android:id="@+id/movieDetailText"
+	          android:layout_width="fill_parent"
+	          android:layout_height="wrap_content"
+	          android:textSize="@dimen/movieTitleTextSize" />
+	
+	      <TextView
+	          android:id="@+id/movieDetailYear"
+	          android:layout_width="fill_parent"
+	          android:layout_height="wrap_content"
+	          android:textSize="@dimen/movieYearTextSize" />
+	
+	     <ListView
+	          android:id="@+id/actorsListView"
+	          android:layout_width="fill_parent"
+	          android:layout_height="wrap_content" />
+	      
+</LinearLayout>
+	
+
+

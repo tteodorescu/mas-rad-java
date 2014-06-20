@@ -5,9 +5,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import ch.heigvd.client.movies.android.R;
 import ch.heigvd.movies.data.Movie;
+import ch.heigvd.client.movies.android.ui.ActorsArrayAdapter;
 
 /**
  * A fragment representing a single Movie detail screen.
@@ -15,16 +17,9 @@ import ch.heigvd.movies.data.Movie;
  * in two-pane mode (on tablets) or a {@link MovieDetailActivity}
  * on handsets.
  */
-public class MovieDetailFragment extends Fragment {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
+public class MovieDetailFragment extends Fragment 
+{
     public static final String ARG_ITEM_ID = "movie";
-
-    /**
-     * The dummy content this fragment is presenting.
-     */
     private Movie mMovie;
 
     /**
@@ -48,13 +43,19 @@ public class MovieDetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
 
         if (mMovie != null) 
-        {
-            ((TextView) rootView.findViewById(R.id.movie_detail)).setText(mMovie.toString());
+        {        	
+            ((TextView) rootView.findViewById(R.id.movieDetailText)).setText(mMovie.getTitle());
+            ((TextView) rootView.findViewById(R.id.movieDetailYear)).setText(String.format("%d",mMovie.getYear()));
+                        
+            ((ListView) rootView.findViewById(R.id.actorsListView)).
+	        	setAdapter(new ActorsArrayAdapter(
+	                getActivity(),
+	                android.R.layout.simple_list_item_activated_1,
+	                android.R.id.text1, mMovie.actors));;            
         }
 
         return rootView;

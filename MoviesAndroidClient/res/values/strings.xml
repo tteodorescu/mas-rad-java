@@ -5,6 +5,11 @@
     <string name="title_movie_detail">Movie Detail</string>
     <string name="movie_item_title_watermark">Movie title</string>
     <string name="movie_item_year_watermark">Year</string>
-    <string name="movie_search_watermark">enter text to begin search</string>    
-    
+    <string name="movie_search_watermark">enter text to begin search</string>
+    <string name="movie_detail_year">Movie Year</string>
+    <string name="movie_detail_title">Movie Detail Title</string>
+    <string name="movie_detail_title_text">Movie Detail Title</string>    
+    <string name="actor_item_lastname_watermark">Last Name</string>
+    <string name="actor_item_firstname_watermark">First Name</string>
+        
 </resources>

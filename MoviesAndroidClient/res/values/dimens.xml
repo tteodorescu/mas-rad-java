@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="movieTitleTextSize">32dp</dimen>
-    <dimen name="movieYearTextSize">20dp</dimen>    
+    <dimen name="movieYearTextSize">20dp</dimen> 
+    <dimen name="actorLastNameTextSize">20dp</dimen>
+    <dimen name="actorFirstNameTextSize">20dp</dimen> 
 </resources>

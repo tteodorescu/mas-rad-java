@@ -30,7 +30,7 @@ public class MovieSoapResponseObject extends Movie implements KvmSerializable
 		try
 		{
 	        if (soapObject.hasProperty(Properties.id))
-	            title = soapObject.getProperty(Properties.id).toString();
+	            id = Integer.valueOf(soapObject.getProperty(Properties.id).toString());
 	        
 	        if (soapObject.hasProperty(Properties.title))
 	            title = soapObject.getProperty(Properties.title).toString();
@@ -42,7 +42,11 @@ public class MovieSoapResponseObject extends Movie implements KvmSerializable
 	        {
 	        	int count = soapObject.getPropertyCount();
 	        	for (int i=3; i<count; i++)
-	        		soapActors.add(new ActorSoapResponseObject((SoapObject)soapObject.getProperty(i)));
+	        	{
+	        		ActorSoapResponseObject soapActor = new ActorSoapResponseObject((SoapObject)soapObject.getProperty(i));
+	        		soapActors.add(soapActor);
+	        		actors.add(soapActor);
+	        	}
 	        }
 		}
 		catch(Exception ex)

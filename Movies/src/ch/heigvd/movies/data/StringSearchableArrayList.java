@@ -1,9 +1,10 @@
 package ch.heigvd.movies.data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class StringSearchableArrayList<T> extends ArrayList<T>
+public class StringSearchableArrayList<T> extends ArrayList<T> implements Serializable
 {
 	private static final long serialVersionUID = -8909527282537944205L;
 

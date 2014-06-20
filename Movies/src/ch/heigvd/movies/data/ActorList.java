@@ -1,8 +1,9 @@
 package ch.heigvd.movies.data;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
-public class ActorList extends StringSearchableArrayList<Actor> 
+public class ActorList extends StringSearchableArrayList<Actor> implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
