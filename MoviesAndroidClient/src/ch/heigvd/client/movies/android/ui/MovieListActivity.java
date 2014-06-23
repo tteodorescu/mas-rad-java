@@ -20,16 +20,12 @@ import android.support.v4.app.FragmentActivity;
 public class MovieListActivity extends FragmentActivity
         implements MovieListFragment.Callbacks
 {
-	private MovieListFragment moviesListFragment; 
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
     {
-        super.onCreate(savedInstanceState);
-        
+        super.onCreate(savedInstanceState);        
         setContentView(R.layout.activity_movie_list);
-        moviesListFragment = (MovieListFragment) getSupportFragmentManager().
-        		findFragmentById(R.id.fragment_movies_list);
     }
     
     @Override

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 import ch.heigvd.movies.data.Movie;
 import ch.heigvd.movies.data.MovieList;
 import ch.heigvd.movies.interfaces.*;
@@ -63,6 +64,13 @@ public class MovieListFragment extends ListFragment
 		@Override
 		public void onMoviesListLoaded(MovieList movies) 
 		{			
+			if (movies.isEmpty())
+			{ 
+				Toast.makeText(getActivity(), 
+					"No results returned", 
+					Toast.LENGTH_SHORT).show(); 
+			}
+			
 	        setListAdapter(new MoviesArrayAdapter(
 	                getActivity(),
 	                android.R.layout.simple_list_item_activated_1,
