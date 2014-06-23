@@ -14,7 +14,7 @@ public class StringSearchableArrayList<T> extends ArrayList<T> implements Serial
 			return this;
 		
 		Iterator<T> iterator = (Iterator<T>) iterator();
-		StringSearchableArrayList<T> list = new StringSearchableArrayList<T>(); 
+		StringSearchableArrayList<T> list = create(); 
 		
 		while(iterator.hasNext())
 		{
@@ -25,6 +25,11 @@ public class StringSearchableArrayList<T> extends ArrayList<T> implements Serial
 		
 		return list; 
 	}	
+	
+	public StringSearchableArrayList<T> create()
+	{
+		return new StringSearchableArrayList<T>();		
+	}
 	
 	@Override
 	public boolean contains(Object o) 

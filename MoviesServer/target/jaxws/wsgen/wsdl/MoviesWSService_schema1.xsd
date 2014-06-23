@@ -23,7 +23,7 @@
 
   <xs:complexType name="getActors">
     <xs:sequence>
-      <xs:element name="partialName" type="xs:string" minOccurs="0"/>
+      <xs:element name="like" type="xs:string" minOccurs="0"/>
       <xs:element name="isSample" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
@@ -78,7 +78,7 @@
 
   <xs:complexType name="getMovies">
     <xs:sequence>
-      <xs:element name="partialTitle" type="xs:string" minOccurs="0"/>
+      <xs:element name="like" type="xs:string" minOccurs="0"/>
       <xs:element name="isSample" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>

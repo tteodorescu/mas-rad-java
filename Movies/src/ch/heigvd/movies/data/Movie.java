@@ -21,7 +21,7 @@ public class Movie implements IMovieData, Serializable
 		this.year = year;
 		this.actors = actors;
 	}
-	
+		
 	@Override
 	public String getTitle() 
 	{ return title; }
@@ -35,7 +35,7 @@ public class Movie implements IMovieData, Serializable
 	
 	@Override
 	public String toString() 
-	{ return String.format("", id, title, year); }
+	{ return String.format("%d %s %d", id, title, year); }
 
 	@Override
 	public int getID() 

@@ -32,15 +32,16 @@ public class MoviesArrayAdapter extends ArrayAdapter<Movie>
 	    
 	    View rowView = inflater.inflate(
 	    		R.layout.movie_listitem_layout, parent, false);
-	    
+	    	    
 	    TextView titleView = (TextView) rowView.findViewById(R.id.movieDetailTitle);
 	    TextView yearView = (TextView) rowView.findViewById(R.id.movieYear);
 	    
 	    IMovieData movie = (IMovieData)movies.get(position);
-	    
+	    rowView.setId(movie.getID());	    
+	    	    
 	    titleView.setText(movie.getTitle());
 	    yearView.setText(String.format("%d", movie.getYear()));
 
 	    return rowView;
-	 }
+	 }	 
 }

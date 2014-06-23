@@ -2,22 +2,26 @@
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
     android:columnCount="2" >
 
     <TextView
-        android:id="@+id/actorLastName"
+        android:id="@+id/actorFirstName"
         android:layout_column="0"
-        android:layout_gravity="left|top"
-        android:layout_row="0"
+        android:gravity="center_vertical"        
+        android:layout_gravity="left"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/actor_item_firstname_watermark"
+        android:textSize="@dimen/actorFirstNameTextSize" />
+        
+    <TextView
+        android:id="@+id/actorLastName"
+        android:layout_column="1"
+        android:gravity="center_vertical"
+        android:layout_gravity="right"
         android:text="@string/actor_item_lastname_watermark"
         android:textSize="@dimen/actorLastNameTextSize" />
     
-    <TextView
-        android:id="@+id/actorFirstName"
-        android:layout_column="1"
-        android:layout_gravity="left|top"
-        android:layout_row="0"
-        android:text="@string/actor_item_firstname_watermark"
-        android:textSize="@dimen/actorFirstNameTextSize" />
-
 </GridLayout>

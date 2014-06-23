@@ -24,4 +24,8 @@ public class MovieList extends StringSearchableArrayList<Movie> implements Seria
 		
 		return new Movie();
 	}
+	
+	@Override
+	public MovieList create()
+	{ return new MovieList(); }	
 }

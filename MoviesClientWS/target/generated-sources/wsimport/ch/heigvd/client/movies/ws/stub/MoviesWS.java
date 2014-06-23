@@ -27,7 +27,7 @@ public interface MoviesWS {
     /**
      * 
      * @param isSample
-     * @param partialTitle
+     * @param like
      * @return
      *     returns java.util.List<ch.heigvd.client.movies.ws.stub.Movie>
      */
@@ -36,15 +36,15 @@ public interface MoviesWS {
     @RequestWrapper(localName = "getMovies", targetNamespace = "http://ch.heigvd.movies.ws/", className = "ch.heigvd.client.movies.ws.stub.GetMovies")
     @ResponseWrapper(localName = "getMoviesResponse", targetNamespace = "http://ch.heigvd.movies.ws/", className = "ch.heigvd.client.movies.ws.stub.GetMoviesResponse")
     public List<Movie> getMovies(
-        @WebParam(name = "partialTitle", targetNamespace = "")
-        String partialTitle,
+        @WebParam(name = "like", targetNamespace = "")
+        String like,
         @WebParam(name = "isSample", targetNamespace = "")
         boolean isSample);
 
     /**
      * 
      * @param isSample
-     * @param partialName
+     * @param like
      * @return
      *     returns java.util.List<ch.heigvd.client.movies.ws.stub.Actor>
      */
@@ -53,8 +53,8 @@ public interface MoviesWS {
     @RequestWrapper(localName = "getActors", targetNamespace = "http://ch.heigvd.movies.ws/", className = "ch.heigvd.client.movies.ws.stub.GetActors")
     @ResponseWrapper(localName = "getActorsResponse", targetNamespace = "http://ch.heigvd.movies.ws/", className = "ch.heigvd.client.movies.ws.stub.GetActorsResponse")
     public List<Actor> getActors(
-        @WebParam(name = "partialName", targetNamespace = "")
-        String partialName,
+        @WebParam(name = "like", targetNamespace = "")
+        String like,
         @WebParam(name = "isSample", targetNamespace = "")
         boolean isSample);
 

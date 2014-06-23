@@ -18,12 +18,12 @@ public interface MoviesWSInterface
 {			
 	@WebMethod(operationName = "getActors")	
 	public ArrayList<Actor> getActors(
-			@WebParam(name="partialName") String partialName, 
+			@WebParam(name="like") String partialName, 
 			@WebParam(name="isSample") boolean isSample);
 		
 	@WebMethod(operationName = "getMovies")
 	public ArrayList<Movie> getMovies(
-			@WebParam(name="partialTitle") String partialTitle, 
+			@WebParam(name="like") String partialTitle, 
 			@WebParam(name="isSample") boolean isSample);
 
 	@WebMethod(operationName = "getMovie")

@@ -11,5 +11,6 @@
     <string name="movie_detail_title_text">Movie Detail Title</string>    
     <string name="actor_item_lastname_watermark">Last Name</string>
     <string name="actor_item_firstname_watermark">First Name</string>
+    <string name="searchBtnText">Search</string>
         
 </resources>

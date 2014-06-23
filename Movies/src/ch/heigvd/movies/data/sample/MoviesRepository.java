@@ -55,7 +55,7 @@ public final class MoviesRepository implements IMovieRepository
 	
 	@Override
 	public MovieList getMovies(String like)
-	{ return movieList.searchLike(like); }
+	{ return (MovieList)movieList.searchLike(like); }
 	
 	@Override
 	public ActorList getActors(String like)

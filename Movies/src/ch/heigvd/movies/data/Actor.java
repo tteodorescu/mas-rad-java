@@ -31,4 +31,9 @@ public class Actor implements IActorsData, Serializable
 	@Override
 	public int getID() 
 	{ return id;}
+	
+	@Override
+	public String toString() 
+	{ return String.format("%d, %s, %s", id, firstName, lastName); }
+	
 }

@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="partialTitle" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="like" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="isSample" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -28,36 +28,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getMovies", propOrder = {
-    "partialTitle",
+    "like",
     "isSample"
 })
 public class GetMovies {
 
-    protected String partialTitle;
+    protected String like;
     protected boolean isSample;
 
     /**
-     * Gets the value of the partialTitle property.
+     * Gets the value of the like property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getPartialTitle() {
-        return partialTitle;
+    public String getLike() {
+        return like;
     }
 
     /**
-     * Sets the value of the partialTitle property.
+     * Sets the value of the like property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setPartialTitle(String value) {
-        this.partialTitle = value;
+    public void setLike(String value) {
+        this.like = value;
     }
 
     /**

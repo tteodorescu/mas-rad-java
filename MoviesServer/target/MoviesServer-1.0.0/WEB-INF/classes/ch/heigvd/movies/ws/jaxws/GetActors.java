@@ -10,13 +10,13 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "getActors", namespace = "http://ch.heigvd.movies.ws/")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getActors", namespace = "http://ch.heigvd.movies.ws/", propOrder = {
-    "partialName",
+    "like",
     "isSample"
 })
 public class GetActors {
 
-    @XmlElement(name = "partialName", namespace = "")
-    private String partialName;
+    @XmlElement(name = "like", namespace = "")
+    private String like;
     @XmlElement(name = "isSample", namespace = "")
     private boolean isSample;
 
@@ -25,17 +25,17 @@ public class GetActors {
      * @return
      *     returns String
      */
-    public String getPartialName() {
-        return this.partialName;
+    public String getLike() {
+        return this.like;
     }
 
     /**
      * 
-     * @param partialName
-     *     the value for the partialName property
+     * @param like
+     *     the value for the like property
      */
-    public void setPartialName(String partialName) {
-        this.partialName = partialName;
+    public void setLike(String like) {
+        this.like = like;
     }
 
     /**

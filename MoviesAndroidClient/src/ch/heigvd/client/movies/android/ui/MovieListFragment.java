@@ -3,68 +3,59 @@ package ch.heigvd.client.movies.android.ui;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import ch.heigvd.movies.data.Movie;
 import ch.heigvd.movies.data.MovieList;
 import ch.heigvd.movies.interfaces.*;
+import ch.heigvd.client.movies.android.R;
 import ch.heigvd.client.movies.android.common.IWSMovieRepository;
 import ch.heigvd.client.movies.android.common.MovieAsyncTaskInfo;
 import ch.heigvd.client.movies.android.common.MoviesLoadCallback;
 
-/**
- * A list fragment representing a list of Movies. This fragment
- * also supports tablet devices by allowing list items to be given an
- * 'activated' state upon selection. This helps indicate which item is
- * currently being viewed in a {@link MovieDetailFragment}.
- * <p>
- * Activities containing this fragment MUST implement the {@link Callbacks}
- * interface.
- */
-public class MovieListFragment extends ListFragment 
+public class MovieListFragment extends ListFragment
 {		
-    /**
-     * The serialization (saved instance state) Bundle key representing the
-     * activated item position. Only used on tablets.
-     */
-    private static final String STATE_ACTIVATED_POSITION = "activated_position";
-
-    /**
-     * The fragment's current callback object, which is notified of list item
-     * clicks.
-     */
     private Callbacks mCallbacks = sDummyCallbacks;
-
-    /**
-     * The current activated item position. Only used on tablets.
-     */
-    private int mActivatedPosition = ListView.INVALID_POSITION;
+    private MovieList mMovies;
+    private Button btnSearch; 
+    private EditText editSearch;
 
     /**
      * A callback interface that all activities containing this fragment must
      * implement. This mechanism allows activities to be notified of item
      * selections.
      */
-    public interface Callbacks {
-        /**
-         * Callback for when an item has been selected.
-         */
+    public interface Callbacks 
+    {
         public void onItemSelected(Movie movie); 
     }
 
-    /**
-     * A dummy implementation of the {@link Callbacks} interface that does
-     * nothing. Used only when this fragment is not attached to an activity.
-     */
+    OnClickListener searchListener = new OnClickListener()
+    {
+    	@Override
+    	public void onClick(View v)
+    	{    		
+	       IWSMovieRepository repo = (IWSMovieRepository) RepositoryFactory.
+	        		getRepository(ServerMovieRepositories.WS_REPOSITORY);        
+
+	        MovieAsyncTaskInfo taskInfo = 
+	        		new MovieAsyncTaskInfo(
+	        				sMoviesLoadCallback, true, editSearch.getText().toString());
+	        
+	        repo.getMoviesAsync(taskInfo);    		
+    	}
+    };
+    
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
         public void onItemSelected(Movie movie) {}
     };
-
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
+    
     public MovieListFragment() {}
         
     private MoviesLoadCallback sMoviesLoadCallback = new MoviesLoadCallback() {
@@ -75,7 +66,9 @@ public class MovieListFragment extends ListFragment
 	        setListAdapter(new MoviesArrayAdapter(
 	                getActivity(),
 	                android.R.layout.simple_list_item_activated_1,
-	                android.R.id.text1, movies));						
+	                android.R.id.text1, movies));
+	        
+	        mMovies = movies;
 		}			
 	};
     	
@@ -89,28 +82,26 @@ public class MovieListFragment extends ListFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        		
-        IWSMovieRepository repo = (IWSMovieRepository) RepositoryFactory.
-        		getRepository(ServerMovieRepositories.WS_REPOSITORY);        
-
-        MovieAsyncTaskInfo taskInfo = 
-        		new MovieAsyncTaskInfo(
-        				sMoviesLoadCallback, true, "*");
         
-        repo.getMoviesAsync(taskInfo);
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+    	return inflater.inflate(R.layout.fragment_movies_list, container, false);
+    }
+    
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) 
+    {
         super.onViewCreated(view, savedInstanceState);
 
-        // Restore the previously serialized activated item position.
-        if (savedInstanceState != null
-                && savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
-            setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
-        }
+        editSearch = (EditText) view.findViewById(R.id.searchMovieText);
+        
+        btnSearch = (Button) view.findViewById(R.id.button_search);               
+        btnSearch.setOnClickListener(searchListener);
     }
-
+        
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -124,57 +115,24 @@ public class MovieListFragment extends ListFragment
     }
 
     @Override
-    public void onDetach() {
+    public void onDetach() 
+    {
         super.onDetach();
-
-        // Reset the active callbacks interface to the dummy implementation.
         mCallbacks = sDummyCallbacks;
     }
-
+           
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
         super.onListItemClick(listView, view, position, id);
-
-        // Notify the active callbacks interface (the activity, if the
-        // fragment is attached to one) that an item has been selected.
         
         IWSMovieRepository repo = (IWSMovieRepository) RepositoryFactory.
         		getRepository(ServerMovieRepositories.WS_REPOSITORY);
         
+        Movie movie = mMovies.get(position); 
+        
         MovieAsyncTaskInfo taskInfo = 
-        		new MovieAsyncTaskInfo(sMovieLoadCallback, true, id);
+        		new MovieAsyncTaskInfo(sMovieLoadCallback, true, movie.getID());
         
         repo.getMoviesAsync(taskInfo);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (mActivatedPosition != ListView.INVALID_POSITION) {
-            // Serialize and persist the activated item position.
-            outState.putInt(STATE_ACTIVATED_POSITION, mActivatedPosition);
-        }
-    }
-
-    /**
-     * Turns on activate-on-click mode. When this mode is on, list items will be
-     * given the 'activated' state when touched.
-     */
-    public void setActivateOnItemClick(boolean activateOnItemClick) {
-        // When setting CHOICE_MODE_SINGLE, ListView will automatically
-        // give items the 'activated' state when touched.
-        getListView().setChoiceMode(activateOnItemClick
-                ? ListView.CHOICE_MODE_SINGLE
-                : ListView.CHOICE_MODE_NONE);
-    }
-
-    private void setActivatedPosition(int position) {
-        if (position == ListView.INVALID_POSITION) {
-            getListView().setItemChecked(mActivatedPosition, false);
-        } else {
-            getListView().setItemChecked(position, true);
-        }
-
-        mActivatedPosition = position;
     }
 }
