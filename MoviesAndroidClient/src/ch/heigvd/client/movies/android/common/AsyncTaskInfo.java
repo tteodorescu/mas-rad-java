@@ -23,6 +23,6 @@ public abstract class AsyncTaskInfo {
 	{ 
 		this.isSample = isSample;
 		this.like = like;
-		this.id = -1;
+		this.id = -1;		
 	}			
 }

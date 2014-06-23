@@ -12,5 +12,6 @@
     <string name="actor_item_lastname_watermark">Last Name</string>
     <string name="actor_item_firstname_watermark">First Name</string>
     <string name="searchBtnText">Search</string>
+    <string name="movie_server_IP">Input a different listener address</string>
         
 </resources>

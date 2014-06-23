@@ -165,15 +165,16 @@ public final class R {
         public static final int actorFirstName=0x7f080003;
         public static final int actorLastName=0x7f080004;
         public static final int actorsListView=0x7f080007;
-        public static final int button_search=0x7f080009;
+        public static final int button_search=0x7f08000a;
         public static final int fragment_movies_list=0x7f080002;
         public static final int movieDetailText=0x7f080005;
-        public static final int movieDetailTitle=0x7f08000a;
+        public static final int movieDetailTitle=0x7f08000b;
         public static final int movieDetailYear=0x7f080006;
-        public static final int movieYear=0x7f08000b;
+        public static final int movieYear=0x7f08000c;
         public static final int movie_detail_container=0x7f080000;
         public static final int movie_list_search=0x7f080001;
-        public static final int searchMovieText=0x7f080008;
+        public static final int moviesServiceIPAddress=0x7f080008;
+        public static final int searchMovieText=0x7f080009;
     }
     public static final class layout {
         public static final int activity_movie_detail=0x7f030000;
@@ -193,6 +194,7 @@ public final class R {
         public static final int movie_item_title_watermark=0x7f060002;
         public static final int movie_item_year_watermark=0x7f060003;
         public static final int movie_search_watermark=0x7f060004;
+        public static final int movie_server_IP=0x7f06000b;
         public static final int searchBtnText=0x7f06000a;
         public static final int title_movie_detail=0x7f060001;
     }

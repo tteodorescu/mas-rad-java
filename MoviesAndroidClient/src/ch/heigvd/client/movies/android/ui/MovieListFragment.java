@@ -18,6 +18,7 @@ import ch.heigvd.client.movies.android.R;
 import ch.heigvd.client.movies.android.common.IWSMovieRepository;
 import ch.heigvd.client.movies.android.common.MovieAsyncTaskInfo;
 import ch.heigvd.client.movies.android.common.MoviesLoadCallback;
+import ch.heigvd.client.movies.android.ws.MovieService;
 
 public class MovieListFragment extends ListFragment
 {		
@@ -25,6 +26,7 @@ public class MovieListFragment extends ListFragment
     private MovieList mMovies;
     private Button btnSearch; 
     private EditText editSearch;
+    private EditText editIPAddress;    
 
     /**
      * A callback interface that all activities containing this fragment must
@@ -41,6 +43,8 @@ public class MovieListFragment extends ListFragment
     	@Override
     	public void onClick(View v)
     	{    		
+    	   MovieService.CUSTOM_ADDRESS = editIPAddress.getText().toString();
+    		
 	       IWSMovieRepository repo = (IWSMovieRepository) RepositoryFactory.
 	        		getRepository(ServerMovieRepositories.WS_REPOSITORY);        
 
@@ -48,7 +52,7 @@ public class MovieListFragment extends ListFragment
 	        		new MovieAsyncTaskInfo(
 	        				sMoviesLoadCallback, true, editSearch.getText().toString());
 	        
-	        repo.getMoviesAsync(taskInfo);    		
+	        repo.getMoviesAsync(taskInfo);
     	}
     };
     
@@ -105,7 +109,8 @@ public class MovieListFragment extends ListFragment
         super.onViewCreated(view, savedInstanceState);
 
         editSearch = (EditText) view.findViewById(R.id.searchMovieText);
-        
+ 	    editIPAddress= (EditText) view.findViewById(R.id.moviesServiceIPAddress);
+ 	    
         btnSearch = (Button) view.findViewById(R.id.button_search);               
         btnSearch.setOnClickListener(searchListener);
     }
@@ -137,6 +142,7 @@ public class MovieListFragment extends ListFragment
         		getRepository(ServerMovieRepositories.WS_REPOSITORY);
         
         Movie movie = mMovies.get(position); 
+ 	   	MovieService.CUSTOM_ADDRESS = editIPAddress.getText().toString();        
         
         MovieAsyncTaskInfo taskInfo = 
         		new MovieAsyncTaskInfo(sMovieLoadCallback, true, movie.getID());

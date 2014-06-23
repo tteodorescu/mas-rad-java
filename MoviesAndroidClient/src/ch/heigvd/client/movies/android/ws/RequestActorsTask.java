@@ -39,7 +39,9 @@ public class RequestActorsTask extends AsyncTask<ActorAsyncTaskInfo, Integer, Ac
 		
 	    try 
 	    {
-		   HttpTransportSE androidHttpTransport = new HttpTransportSE(MovieService.URL);
+		   HttpTransportSE androidHttpTransport = 
+				   new HttpTransportSE(MovieService.getWSDLAddress());
+		   
 		   androidHttpTransport.debug = true;
 		   
 		   androidHttpTransport.call(MovieService.SOAP_ACTION, envelope);
