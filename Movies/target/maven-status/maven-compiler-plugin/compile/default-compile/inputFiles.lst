@@ -5,10 +5,11 @@
 /home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/interfaces/BasicMovieRepositories.java
 /home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/interfaces/IActorList.java
 /home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/interfaces/IMovieList.java
-/home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/data/StringSearchableArrayList.java
 /home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/data/Movie.java
+/home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/data/StringSearchableArrayList.java
 /home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/data/MovieList.java
 /home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/interfaces/ServerMovieRepositories.java
+/home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/interfaces/MovieWebFormat.java
 /home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/data/sample/MoviesRepository.java
 /home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/interfaces/IActorsData.java
 /home/traian/Workspaces/eclipse-kepler/MoviesProject/Movies/src/ch/heigvd/movies/interfaces/RepositoryFactory.java

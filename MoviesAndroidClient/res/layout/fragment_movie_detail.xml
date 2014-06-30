@@ -7,7 +7,6 @@
 	 	     android:id="@+id/movieDetailText"
 	 	     android:layout_width="fill_parent"
 	 	     android:layout_height="wrap_content"
-	 	     android:background="@color/Azure"
 	 	     android:textSize="@dimen/movieTitleTextSize" />
 	
 	      <TextView
@@ -18,9 +17,14 @@
 	
 	     <ListView
 	          android:id="@+id/actorsListView"
-	          android:layout_width="wrap_content"
+	          android:layout_width="fill_parent"
 	          android:layout_height="wrap_content" />
-	      
+	     
+    	<FrameLayout
+        	android:id="@+id/movie_details_web_container"
+        	android:layout_height="fill_parent"
+        	android:layout_width="fill_parent" />
+	        
 </LinearLayout>
 	
 

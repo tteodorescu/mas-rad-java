@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import ch.heigvd.movies.interfaces.*;
 
-public class Movie implements IMovieData, Serializable
+public class Movie implements IMovieData, Serializable, MovieWebFormat
 {
 	public static final long serialVersionUID = -8629605358805909451L;
 	public String title;
@@ -40,4 +40,9 @@ public class Movie implements IMovieData, Serializable
 	@Override
 	public int getID() 
 	{ return id; }
+	
+	@Override
+	public String getWebTitle() {
+		return title.replace(" ", "%20");
+	}		
 }

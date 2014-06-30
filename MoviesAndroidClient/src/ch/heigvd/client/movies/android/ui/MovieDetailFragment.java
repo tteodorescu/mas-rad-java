@@ -55,7 +55,16 @@ public class MovieDetailFragment extends Fragment
 	        	setAdapter(new ActorsArrayAdapter(
 	                getActivity(),
 	                android.R.layout.simple_list_item_activated_1,
-	                android.R.id.text1, mMovie.actors));;            
+	                android.R.id.text1, mMovie.actors));
+                                              
+            Bundle bundle = new Bundle();
+            bundle.putString(MovieDetailWebFragment.ARG_ITEM_ID, mMovie.getWebTitle());
+            MovieDetailWebFragment fragment = new MovieDetailWebFragment();
+            fragment.setArguments(bundle);
+                        
+            getChildFragmentManager().beginTransaction()
+                    .add(R.id.movie_details_web_container, fragment)
+                    .commit();
         }
 
         return rootView;

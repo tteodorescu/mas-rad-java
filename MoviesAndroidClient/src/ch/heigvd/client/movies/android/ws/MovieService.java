@@ -9,6 +9,9 @@ public class MovieService
     public static final String SOAP_ACTION =  "\""+""+"\"";
     public static String CUSTOM_ADDRESS="";
     
+    public static final String IMDB_SEARCH_URL = "http://www.imdb.com/search/";
+    public static final String IMDB_SEARCH_URI = "title?title=";
+    
     public static String getWSDLAddress()
     {
     	return CUSTOM_ADDRESS != null && CUSTOM_ADDRESS.length() > 0 ? 
