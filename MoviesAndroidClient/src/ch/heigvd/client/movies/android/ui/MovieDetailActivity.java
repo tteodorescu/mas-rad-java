@@ -1,6 +1,7 @@
 package ch.heigvd.client.movies.android.ui;
 
 import ch.heigvd.client.movies.android.R;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -24,7 +25,10 @@ public class MovieDetailActivity extends FragmentActivity {
         setContentView(R.layout.activity_movie_detail);
 
         // Show the Up button in the action bar.
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar bar = getActionBar();
+        
+        if (bar != null)
+        	bar.setDisplayHomeAsUpEnabled(true);
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity

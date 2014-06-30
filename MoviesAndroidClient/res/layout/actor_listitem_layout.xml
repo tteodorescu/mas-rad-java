@@ -4,23 +4,20 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-    android:columnCount="2" >
+	android:columnCount="2"
+	android:orientation="horizontal" >
 
     <TextView
         android:id="@+id/actorFirstName"
-        android:layout_column="0"
-        android:gravity="center_vertical"        
-        android:layout_gravity="left"
+        android:gravity="center_vertical|left"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="50dp"
+        android:minWidth="100dp"
         android:text="@string/actor_item_firstname_watermark"
         android:textSize="@dimen/actorFirstNameTextSize" />
         
     <TextView
         android:id="@+id/actorLastName"
-        android:layout_column="1"
-        android:gravity="center_vertical"
-        android:layout_gravity="right"
+        android:gravity="center_vertical|left"
         android:text="@string/actor_item_lastname_watermark"
         android:textSize="@dimen/actorLastNameTextSize" />
     
